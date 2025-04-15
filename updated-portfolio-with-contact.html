@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bishal Bhattacharjee | AI Engineer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+    body {
+      background: linear-gradient(to top right, #001203, #0a1f0a, #031a06);
+      color: #a3ffb3;
+      min-height: 100vh;
+    }
+    main {
+      min-height: 100vh;
+    }
+    section {
+      padding: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 70vh;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #00ff66;
+      opacity: 1;
+      animation: fadeIn 0.8s ease-out;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 3.75rem;
+      }
+    }
+    .name {
+      color: #0f0;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 2px #000, 0 0 3px #000;
+    }
+    .tagline {
+      font-size: 1.25rem;
+      max-width: 42rem;
+      color: #98ff98;
+      animation: fadeInDelay 0.8s ease-out 0.3s both;
+    }
+    @media (min-width: 768px) {
+      .tagline {
+        font-size: 1.5rem;
+      }
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+      flex-wrap: wrap;
+    }
+    .button {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(to right, #00cc44, #008833);
+      color: #001a00;
+      font-weight: bold;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      box-shadow: 0 0 15px 1px rgba(0, 255, 0, 0.2);
+      transition: all 0.3s;
+      border: 1px solid #00ff44;
+    }
+    .button:hover {
+      background: linear-gradient(to right, #00ff44, #00cc44);
+      box-shadow: 0 0 20px 5px rgba(0, 255, 0, 0.4);
+    }
+    h2 {
+      font-size: 1.875rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #00ff44;
+      padding-bottom: 0.5rem;
+      color: #0f0;
+      text-shadow: 0 0 3px #0f0;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .card {
+      background-color: rgba(0, 20, 0, 0.7);
+      border: 1px solid #00ff44;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+    }
+    .card:hover {
+      box-shadow: 0 0 25px 5px rgba(0, 255, 0, 0.4);
+      transform: translateY(-3px);
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0f0;
+    }
+    .card p {
+      margin-top: 0.5rem;
+      color: #98ff98;
+      font-size: 0.875rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 36rem;
+    }
+    input, textarea {
+      background-color: rgba(0, 30, 0, 0.7);
+      border: 1px solid #00ff44;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      color: #0f0;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.6);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDelay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .terminal-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background-color: #0f0;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid #00ff4480;
+      position: sticky;
+      top: 0;
+      background-color: rgba(0, 15, 0, 0.95);
+      z-index: 100;
+      backdrop-filter: blur(5px);
+    }
+    .logo {
+      color: #0f0;
+      font-weight: bold;
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+    }
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: all 0.3s;
+    }
+    nav a:hover {
+      text-shadow: 0 0 10px #0f0;
+    }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .blog-date {
+      font-size: 0.75rem;
+      color: #7cff7c;
+    }
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .tag {
+      background-color: rgba(0, 255, 0, 0.1);
+      border: 1px solid #00ff44;
+      padding: 0.2rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      color: #7cff7c;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .tool-card {
+      background-color: rgba(0, 20, 0, 0.7);
+      border: 1px solid #00ff44;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .tool-card:hover {
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      transform: translateY(-3px);
+    }
+    .tool-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .progress-bar {
+      height: 8px;
+      background-color: rgba(0, 255, 0, 0.2);
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    .progress {
+      height: 100%;
+      background-color: #00ff44;
+      border-radius: 4px;
+    }
+    .experience-card {
+      border-left: 2px solid #00ff44;
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .experience-card:before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #00ff44;
+      border-radius: 50%;
+      left: -7px;
+      top: 5px;
+    }
+    .experience-date {
+      color: #7cff7c;
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    .experience-company {
+      color: #0f0;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    .experience-position {
+      color: #98ff98;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    .experience-description {
+      color: #a3ffb3;
+      line-height: 1.5;
+    }
+    .experience-description ul {
+      margin-top: 0.5rem;
+      margin-left: 1.25rem;
+    }
+    .experience-description li {
+      margin-bottom: 0.25rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #00ff4480;
+      font-size: 0.875rem;
+      color: #7cff7c;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .social-links a {
+      color: #0f0;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+    .social-links a:hover {
+      text-shadow: 0 0 10px #0f0;
+      transform: translateY(-3px);
+    }
+    .about-content {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .about-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid #00ff44;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .about-text {
+      flex-grow: 1;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .skill-category {
+      margin-bottom: 1.5rem;
+    }
+    .skill-category h3 {
+      color: #0f0;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .about-image {
+        margin-bottom: 1.5rem;
+      }
+    }
+    .testimonial {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      position: relative;
+    }
+    .testimonial-content {
+      font-style: italic;
+      line-height: 1.6;
+      position: relative;
+    }
+    .testimonial-content:before {
+      content: """;
+      font-size: 4rem;
+      position: absolute;
+      left: -1.5rem;
+      top: -1.5rem;
+      color: rgba(0, 255, 0, 0.2);
+    }
+    .testimonial-author {
+      margin-top: 1rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .testimonial-position {
+      font-size: 0.875rem;
+      color: #7cff7c;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background-color: rgba(0, 255, 0, 0.2);
+      border: 1px solid #00ff44;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: bold;
+    }
+    .certification-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .certification-issuer {
+      font-size: 0.875rem;
+      color: #7cff7c;
+      margin-bottom: 0.25rem;
+    }
+    .certification-date {
+      font-size: 0.75rem;
+      color: #7cff7c;
+    }
+    .education-card {
+      border-left: 2px solid #00ff44;
+      padding-left: 1.5rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .education-card:before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #00ff44;
+      border-radius: 50%;
+      left: -7px;
+      top: 5px;
+    }
+    .contact-info {
+      margin-bottom: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .contact-icon {
+      font-size: 1.5rem;
+      color: #0f0;
+    }
+    .contact-text {
+      color: #98ff98;
+    }
+    .contact-text a {
+      color: #0f0;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .contact-text a:hover {
+      text-shadow: 0 0 10px #0f0;
+    }
+    .contact-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo">BB.<span class="terminal-cursor"></span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#blogs">Blogs</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <main>
+    <section class="hero">
+      <h1>Hi, I am <span class="name">Bishal Bhattacharjee</span><span class="terminal-cursor"></span></h1>
+      <p class="tagline">Aspiring AI Engineer with passion for machine learning and natural language processing.</p>
+      <div class="buttons">
+        <a href="#projects" class="button">🚀 View Projects</a>
+        <a href="#contact" class="button">📬 Contact Me</a>
+        <a href="#resume" class="button resume-button">📄 Download Resume</a>
+      </div>
+    </section>
+    
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="/api/placeholder/200/200" alt="Bishal Bhattacharjee" />
+        </div>
+        <div class="about-text">
+          <p>I'm a fresh graduate with a passion for Artificial Intelligence and Machine Learning. My academic journey has equipped me with a strong foundation in programming, data analysis, and AI concepts that I'm eager to apply in professional settings.</p>
+          <p>My fascination with AI began during my undergraduate studies, and I've since focused on building practical skills through various projects and online certifications. I'm particularly interested in natural language processing and how AI can solve real-world problems.</p>
+          <p>As a fresher in the field, I bring enthusiasm, up-to-date knowledge of current AI trends, and a strong desire to learn and grow. When I'm not coding, you can find me writing technical blogs, participating in AI competitions, or exploring open-source projects.</p>
+          <div class="badges">
+            <span class="badge">Machine Learning</span>
+            <span class="badge">Deep Learning</span>
+            <span class="badge">Natural Language Processing</span>
+            <span class="badge">Computer Vision</span>
+            <span class="badge">Data Science</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="education">
+      <h2>Education</h2>
+      <div class="education-card">
+        <p class="experience-date">2021 - 2025</p>
+        <p class="experience-company">Indian Institute of Technology</p>
+        <p class="experience-position">B.Tech in Computer Science and Engineering</p>
+        <div class="experience-description">
+          <p>Relevant coursework:</p>
+          <ul>
+            <li>Data Structures and Algorithms</li>
+            <li>Machine Learning</li>
+            <li>Deep Learning</li>
+            <li>Natural Language Processing</li>
+            <li>Computer Vision</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="education-card">
+        <p class="experience-date">2019 - 2021</p>
+        <p class="experience-company">Delhi Public School</p>
+        <p class="experience-position">Higher Secondary Education</p>
+        <div class="experience-description">
+          <p>Science stream with Computer Science</p>
+          <ul>
+            <li>Scored 95% in Computer Science</li>
+            <li>Participated in national-level coding competitions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <div class="grid">
+        <div class="card certification-card">
+          <div class="card-content">
+            <h3>Deep Learning Specialization</h3>
+            <p class="certification-issuer">Coursera - DeepLearning.AI</p>
+            <p class="certification-date">March 2024</p>
+            <p>Comprehensive specialization covering neural networks, optimization algorithms, CNNs, sequence models, and practical applications.</p>
+            <div class="tags">
+              <span class="tag">Neural Networks</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">PyTorch</span>
+            </div>
+          </div>
+        </div>
+        <div class="card certification-card">
+          <div class="card-content">
+            <h3>Machine Learning Engineering for Production (MLOps)</h3>
+            <p class="certification-issuer">Coursera - DeepLearning.AI</p>
+            <p class="certification-date">January 2024</p>
+            <p>Learned end-to-end ML production systems, model deployment, and monitoring in production environments.</p>
+            <div class="tags">
+              <span class="tag">MLOps</span>
+              <span class="tag">TensorFlow Extended</span>
+              <span class="tag">Deployment</span>
+            </div>
+          </div>
+        </div>
+        <div class="card certification-card">
+          <div class="card-content">
+            <h3>Natural Language Processing Specialization</h3>
+            <p class="certification-issuer">Coursera - DeepLearning.AI</p>
+            <p class="certification-date">November 2023</p>
+            <p>Covered sentiment analysis, text generation, question answering, and language model training.</p>
+            <div class="tags">
+              <span class="tag">NLP</span>
+              <span class="tag">Transformers</span>
+              <span class="tag">BERT</span>
+            </div>
+          </div>
+        </div>
+        <div class="card certification-card">
+          <div class="card-content">
+            <h3>TensorFlow Developer Professional Certificate</h3>
+            <p class="certification-issuer">Coursera - Google</p>
+            <p class="certification-date">August 2023</p>
+            <p>Mastered building and training neural networks using TensorFlow for various AI applications.</p>
+            <div class="tags">
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Time Series</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="projects">
+      <h2>AI Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-content">
+            <h3>Neural Text Generation System</h3>
+            <p>A transformer-based model that generates coherent and contextually relevant text for content creation.</p>
+            <div class="tags">
+              <span class="tag">Transformers</span>
+              <span class="tag">NLP</span>
+              <span class="tag">PyTorch</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <h3>Visual Recognition Framework</h3>
+            <p>An end-to-end computer vision system that identifies and classifies objects in real-time video streams.</p>
+            <div class="tags">
+              <span class="tag">Computer Vision</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Real-time</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <h3>Conversational AI Assistant</h3>
+            <p>A dialog system capable of natural conversations, context tracking, and task completion.</p>
+            <div class="tags">
+              <span class="tag">Dialog Systems</span>
+              <span class="tag">RLHF</span>
+              <span class="tag">LLMs</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-content">
+            <h3>Anomaly Detection Engine</h3>
+            <p>A self-supervised learning approach to identify unusual patterns in time-series data for early problem detection.</p>
+            <div class="tags">
+              <span class="tag">Anomaly Detection</span>
+              <span class="tag">Time-series</span>
+              <span class="tag">Self-supervised</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="skills">
+      <h2>Tech Skills & Tools</h2>
+      
+      <div class="skill-category">
+        <h3>Programming Languages</h3>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon">🐍</div>
+            <p>Python</p>
+            <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🔢</div>
+            <p>R</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">☕</div>
+            <p>Java</p>
+            <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🌐</div>
+            <p>JavaScript</p>
+            <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">©️</div>
+            <p>C++</p>
+            <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Machine Learning Frameworks</h3>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon">🔥</div>
+            <p>PyTorch</p>
+            <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">📊</div>
+            <p>TensorFlow</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🧠</div>
+            <p>Keras</p>
+            <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🌲</div>
+            <p>Scikit-learn</p>
+            <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🤗</div>
+            <p>Hugging Face</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Data Processing & Visualization</h3>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon">🐼</div>
+            <p>Pandas</p>
+            <div class="progress-bar"><div class="progress" style="width: 95%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">📊</div>
+            <p>NumPy</p>
+            <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">📈</div>
+            <p>Matplotlib</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">✨</div>
+            <p>Seaborn</p>
+            <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">📊</div>
+            <p>Plotly</p>
+            <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>MLOps & Tools</h3>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-icon">🔄</div>
+            <p>MLflow</p>
+            <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🧪</div>
+            <p>DVC</p>
+            <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">☁️</div>
+            <p>AWS</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">☁️</div>
+            <p>GCP</p>
+            <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-icon">🐳</div>
+            <p>Docker</p>
+            <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="blogs">
+      <h2>Tech Blogs</h2>
+      <div class="grid">
+        <div class="card blog-card">
+          <div class="card-content">
+            <h3>Understanding Transformer Architecture</h3>
+            <p class="blog-date">April 10, 2025</p>
+            <p>A deep dive into the architecture that revolutionized natural language processing and why it's so effective.</p>
+            <div class="tags">
+              <span class="tag">NLP</span>
+              <span class="tag">Transformers</span>
+              <span class="tag">Deep Learning</span>
+            </div>
+          </div>
+        </div>
+        <div class="card blog-card">
+          <div class="card-content">
+            <h3>Building Ethical AI Systems
+              <section id="contact" style="padding: 2.5rem; margin-bottom: 1rem;">
+                <h2 style="color: #0f0;">Contact Me</h2>
+                <p style="color: #a3ffb3;">Email: bishalbhattacharjee@example.com</p>
+              </section>
